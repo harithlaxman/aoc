@@ -44,12 +44,16 @@ func ch2(scanner bufio.Scanner) int {
 				r = i
 			}
 		}
+		if l == -1 {
+			l = len(b)
+			r = 0
+		}
 		ls := string(b[0:l])
 		rs := string(b[r:])
 		li := -1
-    ll := 0
+		ll := 0
 		ri := -1
-    rr := 0
+		rr := 0
 		for j, s := range arr {
 			i := strings.Index(ls, s)
 			if i != -1 {
@@ -74,17 +78,23 @@ func ch2(scanner bufio.Scanner) int {
 				}
 			}
 		}
-    if ll != 0 {
-      l = ll 
-    } else {
-      l, _ = strconv.Atoi(string(b[l]))
-    }
-    if rr != 0 {
-      r = rr
-    } else {
-      r, _ = strconv.Atoi(string(b[r]))
-    }
-    sum = sum + 10*l + r
+		if li == -1 {
+			l, _ = strconv.Atoi(string(b[l]))
+		} else {
+			l = ll
+		}
+		if ri == -1 {
+			r, _ = strconv.Atoi(string(b[r]))
+		} else {
+			r = rr
+		}
+		if l == 0 {
+			fmt.Println("YOU FUCK")
+		}
+		if r == 0 {
+			fmt.Println("YOU FUCKR")
+		}
+		sum = (sum) + (10 * l) + (r)
 	}
 
 	return sum
