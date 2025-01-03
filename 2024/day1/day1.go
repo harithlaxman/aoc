@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"math"
 	"os"
 	"sort"
@@ -10,10 +11,10 @@ import (
 	"strings"
 )
 
-func getArrays() ([]int, []int) {
+func getInput() ([]int, []int) {
 	file, err := os.Open("day1_1.txt")
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Fatal(err.Error())
 	}
 	defer file.Close()
 
@@ -33,20 +34,20 @@ func getArrays() ([]int, []int) {
 }
 
 func partOne() {
-	leftArr, rightArr := getArrays()
+	leftArr, rightArr := getInput()
 	sort.Ints(leftArr)
 	sort.Ints(rightArr)
 
 	totalDistance := 0
 	for i := 0; i < len(leftArr); i++ {
-		totalDistance += int(math.Abs(float64(leftArr[i]) - float64(rightArr[i])))
+		totalDistance += int(math.Abs(float64(leftArr[i] - rightArr[i])))
 	}
 
 	fmt.Println(totalDistance)
 }
 
 func partTwo() {
-	leftArr, rightArr := getArrays()
+	leftArr, rightArr := getInput()
 
 	totalScore := 0
 
@@ -64,6 +65,6 @@ func partTwo() {
 }
 
 func main() {
-	partOne()
-	partTwo()
+    partOne()
+    partTwo()
 }
